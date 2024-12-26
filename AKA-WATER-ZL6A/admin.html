@@ -1,0 +1,52 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - ZL6A E-SPORTS</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>ZL6A E-SPORTS - لوحة التحكم</h1>
+    </div>
+
+    <div class="admin-container">
+        <h2>إرسال رسالة أو تحديث</h2>
+        
+        <textarea id="generalMessageInput" placeholder="أدخل الرسالة العامة هنا"></textarea>
+        <button id="sendGeneralMessageBtn">إرسال الرسالة العامة</button>
+
+        <textarea id="updateMessageInput" placeholder="أدخل التحديث هنا"></textarea>
+        <button id="sendUpdateMessageBtn">إرسال التحديث</button>
+    </div>
+
+    <script>
+        // استخدام IPify API للحصول على IP المستخدم
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                const userIp = data.ip;
+                console.log('IP المستخدم:', userIp);
+
+                // تحديد الـ IPs المسموح بها
+                const allowedIps = ['123.123.123.123', '111.111.111.111']; // استبدلها بـ IPs المسموح بها
+
+                // التحقق من الـ IP
+                if (!allowedIps.includes(userIp)) {
+                    // إذا كان الـ IP غير مسموح به، إعادة توجيه المستخدم
+                    alert('تم رفض الوصول! عنوان الـ IP الخاص بك غير مصرح له.');
+                    window.location.href = 'access_denied.html'; // توجيه إلى صفحة رفض الوصول
+                } else {
+                    console.log('تم السماح بالوصول');
+                }
+            })
+            .catch(error => {
+                console.error('حدث خطأ أثناء الحصول على الـ IP:', error);
+            });
+    </script>
+
+    <script src="commands.js"></script>
+</body>
+</html>

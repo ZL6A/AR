@@ -1,0 +1,15 @@
+# robots.txt for https://zl6a.github.io/AR/
+
+# السماح لكل محركات البحث
+User-agent: *
+Disallow: /admin/         # منع الوصول إلى صفحة الإدارة
+Disallow: /private/       # منع الوصول إلى الصفحات الخاصة
+Disallow: /login.html     # منع الوصول إلى صفحة التسجيل
+Disallow: /home.html      # منع الوصول إلى الصفحة الرئيسية للمستخدمين غير المسجلين
+Disallow: /protected/     # منع الوصول إلى المجلدات المحمية
+
+# السماح بالوصول لجميع الملفات الأخرى
+Allow: /
+
+# يمكن لمحركات البحث الوصول إلى ملف sitemap
+Sitemap: https://zl6a.github.io/AR/sitemap.xml

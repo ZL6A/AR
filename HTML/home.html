@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // تحقق من حالة تسجيل الدخول
+        window.onload = function() {
+            // تحقق مما إذا كان المستخدم قد سجل الدخول باستخدام LocalStorage
+            const isLoggedIn = localStorage.getItem('loggedIn');
+            
+            if (isLoggedIn !== 'true') {
+                // إذا لم يكن المستخدم مسجلاً للدخول، أعد توجيهه إلى صفحة التسجيل
+                window.location.href = 'register.html';  // استبدل هذا بالمسار الفعلي لصفحة التسجيل
+            }
+        };
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الألعاب ZL6A</title>
+    <style>
+        /* Reset بعض الأنماط الافتراضية */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* الخلفية والتخطيط العام */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    overflow-x: hidden;
+    text-align: center; /* محاذاة النصوص بشكل مركزي */
+    padding: 0 15px; /* إضافة حواف بسيطة للمحتوى */
+}
+
+/* تنسيق العناوين الرئيسية */
+h1 {
+    font-size: 3rem;
+    margin-top: 30px;
+    font-weight: 700;
+    color: #fff;
+    animation: fadeInUp 1.5s ease-out;
+    letter-spacing: 1px;
+}
+
+/* تخصيص النصوص الأخرى في الصفحة */
+p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #ccc;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+/* تخصيص الملاحظات */
+.note {
+    color: #ffcc00;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 20px;
+    animation: pulse 1.5s infinite;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* تخصيص الأزرار */
+button {
+    padding: 18px 35px;
+    margin: 20px;
+    background: linear-gradient(90deg, #6a00ff, #3e0b60);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    outline: none;
+    letter-spacing: 1px;
+}
+
+/* تأثير الأزرار عند التفاعل */
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, #ff00d9, #3e0b60);
+    animation: pulse 1.5s infinite;
+}
+
+/* تأثير الضغط على الأزرار */
+button:active {
+    transform: scale(0.95);
+    background: #4c0066;
+}
+
+/* تأثير الأنيميشن */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* تخصيص التضمينات (Embeds) */
+.embed {
+    background-color: #1e1e1e;
+    border-left: 5px solid #6a00ff;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 2s ease-out;
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+/* تخصيص النصوص داخل التضمينات */
+.embed h3 {
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* تخصيص النص داخل التضمين */
+.embed p {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* تخصيص الروابط داخل التضمينات */
+.embed a {
+    color: #ff00d9;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1rem;
+}
+
+/* تأثير التفاعل مع الروابط داخل التضمين */
+.embed a:hover {
+    color: #00c2ff;
+    text-decoration: underline;
+    transform: scale(1.1);
+}
+
+/* تخصيص محاذاة النصوص وتجاوب الصفحة */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* تقليل حجم الخط للعناوين في الشاشات الصغيرة */
+    }
+    p {
+        font-size: 1rem; /* تقليل حجم النصوص في الشاشات الصغيرة */
+        line-height: 1.6;
+    }
+    .note {
+        font-size: 1.2rem;
+    }
+    .embed {
+        padding: 15px;
+    }
+    button {
+        padding: 15px 25px; /* تقليل حجم الأزرار في الشاشات الصغيرة */
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0 10px; /* إضافة هوامش أقل على الشاشات الصغيرة جداً */
+    }
+    h1 {
+        font-size: 2rem; /* تقليل حجم العنوان بشكل أكبر */
+    }
+    p {
+        font-size: 0.9rem; /* تقليل حجم النصوص أكثر */
+    }
+    button {
+        padding: 12px 20px; /* تقليل حجم الأزرار في الشاشات الصغيرة جداً */
+        font-size: 1rem;
+    }
+    .note {
+        font-size: 1rem; /* تقليل حجم النصوص الملاحظات */
+    }
+    .embed h3 {
+        font-size: 1.4rem;
+    }
+}
+/* تنسيق شريط التنقل */
+.navbar {
+    width: 100%;
+    background: linear-gradient(90deg, #6a00ff, #3e0b60); /* البنفسجي */
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* التأكد من أن الشريط فوق المحتوى */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+/* تنسيق القوائم في شريط التنقل */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+/* تنسيق عناصر القوائم في شريط التنقل */
+.navbar ul li {
+    font-size: 1.5rem;
+}
+
+/* تنسيق الروابط في شريط التنقل بحيث تظهر كأزرار */
+.navbar ul li a {
+    display: inline-block;
+    padding: 12px 25px;
+    color: white;
+    text-decoration: none;
+    background: #3e0b60; /* اللون الخلفي للبنفسجي الداكن */
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+/* تأثير التفاعل مع الروابط */
+.navbar ul li a:hover {
+    background: #00c2ff; /* اللون الأزرق عند التفاعل */
+    transform: scale(1.1); /* تكبير الزر عند التفاعل */
+}
+
+/* تأثير عند الضغط على الرابط */
+.navbar ul li a:active {
+    transform: scale(0.95); /* تصغير الزر عند الضغط */
+}
+
+/* محاذاة النصوص داخل الصفحة بحيث لا يتداخل مع الشريط */
+body {
+    padding-top: 80px; /* إضافة مساحة للشريط الثابت */
+}
+
+/* تخصيص القائمة في الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 0;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .navbar ul li {
+        font-size: 1.3rem;
+    }
+}
+
+/* تخصيص القائمة في الشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .navbar ul li {
+        font-size: 1.1rem; /* تقليل حجم الخط في الهواتف الصغيرة */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <ul>
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#games">الألعاب المدعومة</a></li>
+            <li><a href="#tournaments">البطولات القادمة</a></li>
+            <li><a href="#store">المتجر</a></li>
+            <li><a href="#contact">الدعم الفني</a></li>
+        </ul>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section id="home" class="main-content">
+        <h1>أهلاً بك في منصة الألعاب ZL6A</h1>
+        <p>نحن نقدم لك أفضل الألعاب والبطولات على الإنترنت.</p>
+        <button>استكشاف الألعاب</button>
+    </section>
+
+    <!-- الألعاب المدعومة -->
+    <section id="games" class="section-content">
+        <h2>الألعاب المدعومة</h2>
+        <p>نحن ندعم ألعابًا شهيرة مثل:</p>
+        <ul>
+            <li>قنشن إمباكت</li>
+            <li>فورتنايت</li>
+            <li>روكتليق</li>
+            <li>أوفرواتش</li>
+            <li>روبلكس</li>
+        </ul>
+    </section>
+
+    <!-- البطولات القادمة -->
+    <section id="tournaments" class="store-section">
+        <h2>البطولات القادمة</h2>
+        <p>سجل الآن في بطولاتنا القادمة:</p>
+        <div class="coming-soon">قريباً: بطولة فورتنايت العالمية!</div>
+    </section>
+
+    <!-- الدعم الفني -->
+    <section id="contact" class="support-section">
+        <h2>الدعم الفني</h2>
+        <p>إذا كنت بحاجة إلى مساعدة، يرجى التواصل معنا عبر <a href="mailto:aka.request.gg@gmail.com">البريد الإلكتروني</a></p>
+        <p>أو انضم إلى سيرفر الديسكورد للحصول على الدعم الفوري:</p>
+        <a href="https://discord.com/invite/VDQ9jtnj" target="_blank"><button>انضم إلى السيرفر</button></a>
+    </section>
+
+    <footer>
+        <p>حقوق الطبع والنشر &copy; 2024 منصة الألعاب ZL6A</p>
+    </footer>
+
+</body>
+</html>
